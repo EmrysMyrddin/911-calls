@@ -61,11 +61,28 @@ GET 911-calls/call/_search
 ```
 
 ###Trouver les 3 mois ayant comptabilisés le plus d'appels
+
+Il est pour l'instant impossible de récupéré un top 3 des buckets retournés par une agrégation. J'ai donc ici une requette renvoyant le nombre d'appels passés par mois, triés par ordre décroissant sur le nombre d'appel. Il faudrat ensuite au niveau de l'application ne prendre que les trois premiers.
+
 ```json
-TODO
+GET 911-calls/call/_search
+{
+  "size" : 0,
+  "aggs" : {
+    "calls" : {
+      "date_histogram" : {
+        "field" : "date",
+        "interval" : "month",
+        "order" : { "_count" : "desc" }
+      }
+    }
+  }
+}
 ```
 
 ###Trouver le top 3 des villes avec le plus d'appels pour overdose
+
+
 ```json
 TODO
 ```
