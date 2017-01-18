@@ -84,7 +84,34 @@ GET 911-calls/call/_search
 
 
 ```json
-TODO
+GET 911-calls/call/_search
+{
+  "size" : 0,
+  "query": {
+    "bool" :{
+      "filter" : {
+        "term": {
+          "category": "EMS"
+        }
+      },
+      "must" : {
+        "wildcard": {
+          "description": {
+            "value": "*overdose*"
+          }
+        }
+      }
+    }
+  },
+  "aggs" : {
+    "calls" : {
+      "terms" : {
+        "field": "town",
+        "size" : 3
+      }
+    }
+  }
+}
 ```
 
 ## Kibana
