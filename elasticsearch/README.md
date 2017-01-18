@@ -47,7 +47,17 @@ GET 911-calls/call/_count
 
 ###Compter le nombre d'appels par catégorie
 ```json
-TODO
+GET 911-calls/call/_search
+{
+  "size" : 0,
+  "aggs": {
+        "calls" : {
+            "terms" : {
+                "field" : "category"
+            }
+        }
+    }
+}
 ```
 
 ###Trouver les 3 mois ayant comptabilisés le plus d'appels
