@@ -68,17 +68,17 @@ const formatData = data => {
 }
 
 const calls = []
-fs.createReadStream('../simple-911.csv')
-.pipe(csv())
-.on('data', data => calls.push(creationRequest, formatData(data)))
-.on('end', () =>
-//*
-createIndex()
-.then(console.log)
-/*/
-Promise.resolve()
-//*/
-.then(() => esClient.bulk({ body : calls }))
-.then(console.log)
-.catch(console.error)
-)
+fs.createReadStream('../911.csv')
+	.pipe(csv())
+	.on('data', data => calls.push(creationRequest, formatData(data)))
+	.on('end', () =>
+		//*
+		createIndex()
+		.then(console.log)
+		/*/
+		Promise.resolve()
+		//*/
+		.then(() => esClient.bulk({ body : calls }))
+		.then(console.log)
+		.catch(console.error)
+	)
